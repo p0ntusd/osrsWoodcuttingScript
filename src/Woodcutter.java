@@ -1,6 +1,7 @@
 import org.osbot.rs07.api.model.NPC;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
+import Scripts1.RandomizerHelper;
 
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -75,7 +76,7 @@ public class Woodcutter extends Script{
             sleep(rand.hoverTime);
             triedToCut = tree.interact(WOODCUTTING_TYPE);
         }
-        sleep(rand.waitAfterFinishClick);
+        sleep(rand.waitAfterFishClick);
 
         if(triedToCut)
             idleCounter = 0;
@@ -129,6 +130,10 @@ public class Woodcutter extends Script{
         if (isInventoryFull())
             dropWood();
         if (myPlayer().isAnimating() || myPlayer().isMoving() && myPlayer().getInteracting() != null)
+
+    }
+
+    private boolean isInventoryFull() {
 
     }
 
