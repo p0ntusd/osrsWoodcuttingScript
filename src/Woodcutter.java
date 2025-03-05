@@ -2,6 +2,9 @@ import org.osbot.rs07.api.model.NPC;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
 
+import java.awt.event.KeyEvent;
+import java.util.Random;
+
 @ScriptManifest(info = "Wood and Drop", logo = "", version = 1.0, author = "p0ntus", name = "Woodcutter")
 
 public class Woodcutter extends Script{
@@ -53,6 +56,15 @@ public class Woodcutter extends Script{
         return 500;
     }
 
+    private void stopExcessiveIdling() {
+    }
+
+    private void sleepRandomTime() {
+    }
+
+    private void callAllAntiBanMethods() {
+    }
+
     public void cutWood() throws InterruptedException {
         log("cutWood()");
         boolean triedToCut = false;
@@ -68,6 +80,38 @@ public class Woodcutter extends Script{
             idleCounter = 0;
 
         log("Cut successful = " + triedToCut);
+    }
+
+    void dropWood() throws InterruptedException {
+        log("dropWood()");
+
+        if (rand.randomDropVersion < 3)
+            getInventory().dropAllExcept(INVENTORY_TO_KEEP);
+        else if (rand.randomDropVersion == 3)
+            while(getInventory().dropAllExcept(WOOD_CUT_IDS)) {
+                getInventory().getItem(WOOD_CUT_IDS).interact("Drop");
+                sleep(new Random().nextInt(544) + 676);
+            }
+        else if(rand.randomDropVersion == 4) 
+            getInventory().dropAll(WOOD_CUT_IDS);
+        else
+            customDrop();
+    }
+
+    private void customDrop() {
+        log("customDrop()");
+
+        sleep(rand.dropSleepBeforeShiftPress);
+        getKeyboard().pressKey(KeyEvent.VK_SHIFT);
+    }
+
+    private boolean isReadyToCut() throws InterruptedException {
+        log("isReadyToCut() = ");
+
+        if (isInventoryFull())
+            dropWood();
+        if (myPlayer().isAnimating() || myPlayer().isMoving() && myPlayer().getInteracting() != null)
+
     }
 
     private void closeDialog() throws InterruptedException {
