@@ -68,6 +68,7 @@ public class Woodcutter extends Script{
     }
 
     private void callAllAntiBanMethods() {
+
     }
 
     public void cutWood() throws InterruptedException {
@@ -152,6 +153,7 @@ public class Woodcutter extends Script{
 
     private boolean isInventoryFull() {
 
+        return true;
     }
 
     private void closeDialog() throws InterruptedException {
