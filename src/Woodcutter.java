@@ -11,10 +11,13 @@ import java.util.stream.IntStream;
 
 public class Woodcutter extends Script{
 
+    private static final int MAX_IDLE_TIMER = 200;
+    private static final int AXE_ID = 1337;
     private int idleCounter = 0;
     RandomizerHelper rand;
 
     static String WOODCUTTING_TYPE;
+    static int[] LOGS_ID = new int[8];
     static int[] INVENTORY_TO_KEEP = new int[8];
     static int[] WOOD_CUT_IDS = new int[8];
     static int WOODCUTTING_SPEED = 1;
@@ -30,7 +33,7 @@ public class Woodcutter extends Script{
             log("SLEEPING @onStart()");
         }
 
-        if (!gui.isVisible() || !gui.isActive)
+        if (!gui.isVisible() || !gui.isActive())
             getBot().getScriptExecutor().resume();
 
         if (INVENTORY_TO_KEEP == null || WOOD_CUT_IDS == null ||
@@ -129,8 +132,22 @@ public class Woodcutter extends Script{
 
         if (isInventoryFull())
             dropWood();
-        if (myPlayer().isAnimating() || myPlayer().isMoving() && myPlayer().getInteracting() != null)
 
+        if (myPlayer().isAnimating() || myPlayer().isMoving() && myPlayer().getInteracting() != null) {
+            log(false);
+            return false;
+        }
+
+        if(!getInventory().contains(AXE_ID)) {
+            log(false + " no axe.");
+            endEverything();
+        }
+
+        log(true);
+        return true;
+    }
+
+    private void endEverything() {
     }
 
     private boolean isInventoryFull() {
