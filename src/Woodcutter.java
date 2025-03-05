@@ -133,8 +133,13 @@ public class Woodcutter extends Script {
         }
     }
 
-    private void woodDropSpeedSleep() {
-
+    private void woodDropSpeedSleep() throws InterruptedException {
+        if(WOODCUTTING_SPEED < 1)
+            sleep(new Random().nextInt(183));
+        else if(WOODCUTTING_SPEED > 1)
+            sleep(new Random().nextInt(540));
+        else
+            sleep(new Random().nextInt(399));
     }
 
     private boolean isReadyToCut() throws InterruptedException {
