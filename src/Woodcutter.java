@@ -72,8 +72,13 @@ public class Woodcutter extends Script {
         return 500;
     }
 
-    private void stopExcessiveIdling() {
+    public void stopExcessiveIdling() throws InterruptedException {
+        if(idleCounter > MAX_IDLE_TIMER) {
+            log("idleTimeOutExit()");
+            endEverything();
+        }
     }
+
 
     private void sleepRandomTime() throws InterruptedException {
         sleep((long) ((long)rand.randomizedSleepTimers * WOODCUTTING_SPEED));
