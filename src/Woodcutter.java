@@ -7,7 +7,9 @@
  * @date    05/03 -25 (eu)
  */
 
+import org.osbot.rs07.api.Tabs;
 import org.osbot.rs07.api.model.NPC;
+import org.osbot.rs07.api.ui.Tab;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
 import Scripts1.RandomizerHelper;
@@ -76,10 +78,6 @@ public class Woodcutter extends Script {
     private void sleepRandomTime() {
     }
 
-    private void callAllAntiBanMethods() {
-
-    }
-
     public void cutWood() throws InterruptedException {
         log("cutWood()");
         boolean triedToCut = false;
@@ -107,7 +105,7 @@ public class Woodcutter extends Script {
                 getInventory().getItem(WOOD_CUT_IDS).interact("Drop");
                 sleep(new Random().nextInt(544) + 676);
             }
-        else if(rand.randomDropVersion == 4) 
+        else if(rand.randomDropVersion == 4)
             getInventory().dropAll(WOOD_CUT_IDS);
         else
             customDrop();
@@ -186,4 +184,55 @@ public class Woodcutter extends Script {
         }
         idleCounter++;
     }
+
+    /**
+     * -------------------- Anti-Ban Methods --------------------
+     */
+
+    public void callAllAntiBanMethods() throws InterruptedException {
+        log("callAllAntiBanMethods()");
+        if(rand.randomCallAntiBanTabs == 10)
+            antiBanTabs();
+        if(rand.randomCallAntiBanMouse == 10)
+            antiBanMouse();
+        if (rand.randomCallAntiBanMouse < 3)
+            getMouse().moveOutsideScreen();
+        if(rand.AFKTimerFrequency == 1)
+            antiBanLongAFK();
+
+    }
+
+    /*prevent bans. It will randomly but rarely switch to the SKILL tab.*/
+    public void antiBanTabs() throws InterruptedException {
+        log("antiBanTabs()");
+
+        Tabs myTabs = getTabs();
+        sleep(rand.pauseBeforeTabs);
+        if(myTabs.getOpen() != Tab.SKILLS) {
+            myTabs.open(Tab.SKILLS);
+            log("tab opened");
+        }
+        sleep(rand.pauseAfterTabs);
+
+    }
+
+    /*prevents bans. Will randomly but rarely move the mouse to random locations.*/
+    public void antiBanMouse() throws InterruptedException {
+        log("antiBanMouse()");
+
+        sleep((long)WOODCUTTING_SPEED * rand.mouseMovementTimerBefore);
+        getMouse().move(rand.randomMouseX,rand.randomMouseY);
+        sleep(rand.mouseMovementTimerAfter);
+
+    }
+
+    /*prevents bans. Will randomly but extremely rarely put character in idle state in order to appear
+     * AFK. Will break idle if character has low health. Adds 30% to idleCounter */
+    public void antiBanLongAFK() throws InterruptedException {
+        log("antiBanLongAFK()");
+
+        sleep((long) (rand.longAFKTimer * WOODCUTTING_SPEED / 2));
+        idleCounter += MAX_IDLE_TIMER * .30;
+    }
 }
+
