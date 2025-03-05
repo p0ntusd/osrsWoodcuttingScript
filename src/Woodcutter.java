@@ -18,7 +18,7 @@ import java.util.stream.IntStream;
 
 @ScriptManifest(info = "Wood and Drop", logo = "", version = 1.0, author = "p0ntus", name = "Woodcutter")
 
-public class Woodcutter extends Script{
+public class Woodcutter extends Script {
 
     private static final int MAX_IDLE_TIMER = 200;
     private static final int AXE_ID = 1337;
@@ -162,8 +162,9 @@ public class Woodcutter extends Script{
     }
 
     private boolean isInventoryFull() {
-
-        return true;
+        boolean temp = getInventory().isFull();
+        log("isInventoryFull() = " + temp);
+        return temp;
     }
 
     private void closeDialog() throws InterruptedException {
