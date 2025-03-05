@@ -36,37 +36,38 @@ public class RandomizerHelper {
         Random randSeed3 = new Random();
 
         //other main randomizers
-        waitAfterFishClick = randSeed1.nextInt(2897) + 1578;
-        closeDialogueTimer = randSeed3.nextInt(721)+ 985;
-        beforeEndEverythingTimer = randSeed1.nextInt(5170) + 497;
-        logoutWaitAfterTabSwitch = randSeed2.nextInt(877 )+589;
-        randomizedSleepTimers = randSeed3.nextInt(4710);
-        randomDropVersion = randSeed1.nextInt(30);
-        waifAfterEachDropClick = randSeed2.nextInt(1170) + 477;
-        hoverTime = randSeed3.nextInt(677);
+        waitAfterFishClick = randSeed1.nextInt(2723) + 1448;
+        closeDialogueTimer = randSeed1.nextInt(538) + 1012;
+        beforeEndEverythingTimer = randSeed1.nextInt(5375) + 295;
+        logoutWaitAfterTabSwitch = randSeed1.nextInt(1026) + 526;
+        randomizedSleepTimers = randSeed1.nextInt(4560);
+        randomDropVersion = randSeed1.nextInt(41) + 1;
+        waifAfterEachDropClick = randSeed1.nextInt(1347) + 724;
+        hoverTime = randSeed1.nextInt(860) + 202;
 
-        //AntiBan randomizers: tabs & camera
-        afterCameraMovementTimer = randSeed1.nextInt(831)+432;
-        beforeCameraMovementTimer = randSeed3.nextInt(412) + 237;
-        randomCallAntiBanCamera = randSeed2.nextInt(4155);
-        randomCallAntiBanTabs = randSeed3.nextInt(1997);
-        pauseBeforeTabs = randSeed1.nextInt(344)+ 355;
-        pauseAfterTabs = randSeed2. nextInt(2312)+ 210;
+// AntiBan randomizers: tabs & camera
+        afterCameraMovementTimer = randSeed1.nextInt(868) + 417;
+        beforeCameraMovementTimer = randSeed1.nextInt(659) + 319;
+        randomCallAntiBanCamera = randSeed1.nextInt(4038) + 101;
+        randomCallAntiBanTabs = randSeed1.nextInt(1864);
+        pauseBeforeTabs = randSeed1.nextInt(122) + 412;
+        pauseAfterTabs = randSeed1.nextInt(2466) + 444;
 
-        //AntiBan randomizers: mouse movement
-        randomCallAntiBanMouse =randSeed1.nextInt(3210);
-        randomMouseX = randSeed3.nextInt(763);
-        randomMouseY = randSeed1.nextInt(502);
-        mouseMovementTimerBefore = randSeed1.nextInt(777);
-        mouseMovementTimerAfter = randSeed2.nextInt(1023);
+// AntiBan randomizers: mouse movement
+        randomCallAntiBanMouse = randSeed1.nextInt(3137) + 122;
+        randomMouseX = randSeed1.nextInt(673) + 171;
+        randomMouseY = randSeed1.nextInt(541) + 170;
+        mouseMovementTimerBefore = randSeed1.nextInt(778) + 144;
+        mouseMovementTimerAfter = randSeed1.nextInt(1008) + 155;
 
-        //drop method randomizers
-        dropSleepBeforeMouseMovement = randSeed1.nextInt(541);
-        dropSleepAfterMouseMovement= randSeed2.nextInt(669);
-        dropSleepBeforeClick = randSeed3.nextInt(671);
-        dropSleepAfterShiftPress = randSeed1.nextInt(351);
-        dropSleepBeforeShiftPress = randSeed2.nextInt(421);
-        dropSleepAfterShiftRelease = randSeed3.nextInt(599);
+// Drop method randomizers
+        dropSleepBeforeMouseMovement = randSeed1.nextInt(521) + 6;
+        dropSleepAfterMouseMovement = randSeed1.nextInt(497) + 178;
+        dropSleepBeforeClick = randSeed1.nextInt(805) + 194;
+        dropSleepAfterShiftPress = randSeed1.nextInt(592) + 219;
+        dropSleepBeforeShiftPress = randSeed1.nextInt(251) + 82;
+        dropSleepAfterShiftRelease = randSeed1.nextInt(431);
+
 
     }
 }
