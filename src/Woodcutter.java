@@ -4,6 +4,7 @@ import org.osbot.rs07.script.ScriptManifest;
 
 import java.awt.event.KeyEvent;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 @ScriptManifest(info = "Wood and Drop", logo = "", version = 1.0, author = "p0ntus", name = "Woodcutter")
 
@@ -98,11 +99,28 @@ public class Woodcutter extends Script{
             customDrop();
     }
 
-    private void customDrop() {
+    private void customDrop() throws InterruptedException {
         log("customDrop()");
 
         sleep(rand.dropSleepBeforeShiftPress);
         getKeyboard().pressKey(KeyEvent.VK_SHIFT);
+
+        for (int x = 0; x < 5; x++) {
+            int xItemID = getInventory().getItemInSlot(x).getId();
+            if(IntStream.of(INVENTORY_TO_KEEP).noneMatch(y -> y == xItemID) && getInventory().getItemInSlot(x) != null) {
+                if(getInventory().isItemSelected()) {
+                    getInventory().deselectItem();
+                    woodDropSpeedSleep();
+                }
+                woodDropSpeedSleep();
+                getMouse().click(false);
+                sleep(new Random().nextInt(246)+ 230);
+            }
+        }
+    }
+
+    private void woodDropSpeedSleep() {
+
     }
 
     private boolean isReadyToCut() throws InterruptedException {
