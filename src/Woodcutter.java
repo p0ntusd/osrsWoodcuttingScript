@@ -162,8 +162,13 @@ public class Woodcutter extends Script {
         return true;
     }
 
-    private void endEverything() {
+    private void endEverything() throws InterruptedException {
+        log("endEverything()");
 
+        sleep(rand.beforeEndEverythingTimer);
+        stop();
+        sleep(new Random().nextInt(22307) + 8620);
+        //System.exit(2)
     }
 
     private boolean isInventoryFull() {

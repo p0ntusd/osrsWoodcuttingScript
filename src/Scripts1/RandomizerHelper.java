@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomizerHelper {
 
-    int beforeEndEverythingTimer;
+    public int beforeEndEverythingTimer;
     int logoutWaitAfterTabSwitch;
     public int closeDialogueTimer;
     public int waitAfterFishClick;
