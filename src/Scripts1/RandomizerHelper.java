@@ -8,7 +8,7 @@ public class RandomizerHelper {
     int logoutWaitAfterTabSwitch;
     public int closeDialogueTimer;
     public int waitAfterFishClick;
-    int randomizedSleepTimers;
+    public int randomizedSleepTimers;
     int randomCallAntiBanCamera;
     public int randomCallAntiBanTabs;
     public int randomCallAntiBanMouse;

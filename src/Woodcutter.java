@@ -31,7 +31,7 @@ public class Woodcutter extends Script {
     static int[] LOGS_ID = new int[8];
     static int[] INVENTORY_TO_KEEP = new int[8];
     static int[] WOOD_CUT_IDS = new int[8];
-    static int WOODCUTTING_SPEED = 1;
+    static double WOODCUTTING_SPEED = 1;
     static int[] TREE_IDS = new int[8];
 
     @Override
@@ -39,7 +39,7 @@ public class Woodcutter extends Script {
         GUI gui = new GUI();
         getBot().getScriptExecutor().pause();
 
-        while (gui.isActive() || gui.isVisible) {
+        while (gui.isActive() || gui.isVisible()) {
             sleep(1427);
             log("SLEEPING @onStart()");
         }
@@ -75,7 +75,8 @@ public class Woodcutter extends Script {
     private void stopExcessiveIdling() {
     }
 
-    private void sleepRandomTime() {
+    private void sleepRandomTime() throws InterruptedException {
+        sleep((long) ((long)rand.randomizedSleepTimers * WOODCUTTING_SPEED));
     }
 
     public void cutWood() throws InterruptedException {
