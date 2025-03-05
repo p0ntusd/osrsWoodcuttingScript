@@ -164,15 +164,15 @@ public class GUI extends JFrame implements ActionListener {
             try {
                 //initializes Fishing type, inventory to keep, fishing spots and fish caught (to drop)
 //                Woodcutter.WOODCUTTING_TYPE = fishingTypeCombo.getSelectedItem().toString();
-                Woodcutter.INVENTORY_TO_KEEP = Arrays.stream(inventoryToKeepTextField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
-                Woodcutter.TREE_IDS = Arrays.stream(fishingSpotTextfField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
-                Woodcutter.WOOD_CUT_IDS = Arrays.stream(fishCaughtTextfField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+                Main.INVENTORY_TO_KEEP = Arrays.stream(inventoryToKeepTextField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+                Main.TREE_IDS = Arrays.stream(fishingSpotTextfField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
+                Main.WOOD_CUT_IDS = Arrays.stream(fishCaughtTextfField.getText().split(",")).mapToInt(Integer::parseInt).toArray();
 
                 //initializing fishing speed accordingly
                 if(fastRadioButton.isSelected())
-                    Woodcutter.WOODCUTTING_SPEED= 0.3;
+                    Main.WOODCUTTING_SPEED= 0.3;
                 else if(slowRadioButton.isSelected())
-                    Woodcutter.WOODCUTTING_SPEED=  3;
+                    Main.WOODCUTTING_SPEED=  3;
 
             }catch(Exception ex){
                 System.out.print(ex);
