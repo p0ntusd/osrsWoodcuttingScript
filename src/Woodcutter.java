@@ -1,3 +1,12 @@
+/**
+ * First ever runescape script.
+ * Made for the OSBot api following
+ * Will Bosch's guide.
+ *
+ * @Author  p0ntus
+ * @date    05/03 -25 (eu)
+ */
+
 import org.osbot.rs07.api.model.NPC;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
@@ -149,6 +158,7 @@ public class Woodcutter extends Script{
     }
 
     private void endEverything() {
+
     }
 
     private boolean isInventoryFull() {
