@@ -7,7 +7,10 @@
  * @date    05/03 -25 (eu)
  */
 
+import org.osbot.rs07.api.GraphicObjects;
+import org.osbot.rs07.api.Objects;
 import org.osbot.rs07.api.Tabs;
+import org.osbot.rs07.api.model.Entity;
 import org.osbot.rs07.api.model.NPC;
 import org.osbot.rs07.api.ui.Tab;
 import org.osbot.rs07.script.Script;
@@ -37,6 +40,13 @@ public class Main extends Script {
     public void onStart() throws InterruptedException {
         GUI gui = new GUI();
         getBot().getScriptExecutor().pause();
+
+        /**
+         * ISTÄLLEt FÖR ATT FIXA GUI
+         */
+        TREE_IDS[0] = 1278;
+        WOOD_CUT_IDS[0] = 1511;
+        INVENTORY_TO_KEEP[0] = 1351;
 
         while (gui.isActive() || gui.isVisible()) {
             sleep(1427);
@@ -85,12 +95,10 @@ public class Main extends Script {
     }
 
     public void cutWood() throws InterruptedException {
-        log("cutWood()");
         log(TREE_IDS[0]);
         boolean triedToCut = false;
-
-        NPC tree = getNpcs().closest(TREE_IDS);
-        log("TREE: " + tree.toString());
+        Entity tree = getObjects().closest("Tree");
+        log(tree);
 
         if (isReadyToCut() && tree != null && !getInventory().isFull()) {
             sleep(rand.hoverTime);
@@ -161,7 +169,7 @@ public class Main extends Script {
             return false;
         }
 
-        if(!getInventory().contains(AXE_ID)) {
+        if(!getInventory().contains(AXE_ID) && !getEquipment().contains(AXE_ID)) {
             log(false + " no axe.");
             endEverything();
         }
