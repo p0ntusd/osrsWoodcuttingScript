@@ -96,21 +96,25 @@ public class Main extends Script {
 
     public void cutWood() throws InterruptedException {
         log(TREE_IDS[0]);
-        boolean triedToCut = false;
+        boolean cutSuccess = false;
         Entity tree = getObjects().closest("Tree");
         log(tree);
 
         if (isReadyToCut() && tree != null && !getInventory().isFull()) {
             sleep(rand.hoverTime);
-            triedToCut = tree.interact("Chop down");
-            log("CHOPPED DOWN");
+            cutSuccess = tree.interact("Chop down");
+            log("Tries to chop...");
         }
         sleep(rand.waitAfterFishClick);
 
-        if(triedToCut)
+        if(cutSuccess)
             idleCounter = 0;
 
-        log("Cut successful = " + triedToCut);
+        if(cutSuccess) {
+            log("Chop success!");
+        } else {
+            log("Chop failed.");
+        }
     }
 
     void dropWood() throws InterruptedException {
