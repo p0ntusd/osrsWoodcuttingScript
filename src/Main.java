@@ -23,6 +23,15 @@ import java.util.stream.IntStream;
 
 @ScriptManifest(info = "Wood and Drop", logo = "", version = 1.0, author = "p0ntus", name = "Woodcutter")
 
+/**
+ * TODO:    Fixa så att cutstomDrop() funkar. Just nu startar den och slutar
+ *          men går aldrig in i själva loopen.
+ *
+ * TODO:    Snyggare logs?
+ *
+ *
+ */
+
 public class Main extends Script {
 
     private static final int MAX_IDLE_TIMER = 200;
@@ -95,7 +104,7 @@ public class Main extends Script {
     }
 
     public void cutWood() throws InterruptedException {
-        log(TREE_IDS[0]);
+        log("Starting: cutWood().");
         boolean cutSuccess = false;
         Entity tree = getObjects().closest("Tree");
         log(tree);
@@ -115,18 +124,14 @@ public class Main extends Script {
         } else {
             log("Chop failed.");
         }
+        log("Ending: cutWood().");
     }
 
     void dropWood() throws InterruptedException {
-        log("dropWood()");
+        log("Starting: dropWood()");
 
         if (rand.randomDropVersion < 3)
             getInventory().dropAllExcept(INVENTORY_TO_KEEP);
-        else if (rand.randomDropVersion == 3)
-            while(getInventory().dropAllExcept(WOOD_CUT_IDS)) {
-                getInventory().getItem(WOOD_CUT_IDS).interact("Drop");
-                sleep(new Random().nextInt(544) + 676);
-            }
         else if(rand.randomDropVersion == 4)
             getInventory().dropAll(WOOD_CUT_IDS);
         else
@@ -134,7 +139,7 @@ public class Main extends Script {
     }
 
     private void customDrop() throws InterruptedException {
-        log("customDrop()");
+        log("Starting: customDrop().");
 
         sleep(rand.dropSleepBeforeShiftPress);
         getKeyboard().pressKey(KeyEvent.VK_SHIFT);
@@ -151,6 +156,7 @@ public class Main extends Script {
                 sleep(new Random().nextInt(246)+ 230);
             }
         }
+        log("Ending: customDrop().");
     }
 
     private void woodDropSpeedSleep() throws InterruptedException {
@@ -163,7 +169,7 @@ public class Main extends Script {
     }
 
     private boolean isReadyToCut() throws InterruptedException {
-        log("isReadyToCut() = ");
+        log("Starting: isReadyToCut().");
 
         if (isInventoryFull())
             dropWood();
@@ -178,7 +184,7 @@ public class Main extends Script {
             endEverything();
         }
 
-        log(true);
+        log("Ending: isReadyToCut() (" + true + ").");
         return true;
     }
 
@@ -223,7 +229,6 @@ public class Main extends Script {
             getMouse().moveOutsideScreen();
         if(rand.AFKTimerFrequency == 1)
             antiBanLongAFK();
-
     }
 
     /*prevent bans. It will randomly but rarely switch to the SKILL tab.*/
