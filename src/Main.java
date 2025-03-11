@@ -35,7 +35,7 @@ import java.util.stream.IntStream;
 public class Main extends Script {
 
     private static final int MAX_IDLE_TIMER = 200;
-    private static final int AXE_ID = 1351;
+    private static final int AXE_ID = 1361;
     private int idleCounter = 0;
     RandomizerHelper rand;
 
@@ -53,9 +53,9 @@ public class Main extends Script {
         /**
          * ISTÄLLEt FÖR ATT FIXA GUI
          */
-        TREE_IDS[0] = 1278;
-        WOOD_CUT_IDS[0] = 1511;
-        INVENTORY_TO_KEEP[0] = 1351;
+        TREE_IDS[0] = 10820;
+        WOOD_CUT_IDS[0] = 1521;
+        INVENTORY_TO_KEEP[0] = 1361;
 
         while (gui.isActive() || gui.isVisible()) {
             sleep(1427);
@@ -106,7 +106,7 @@ public class Main extends Script {
     public void cutWood() throws InterruptedException {
         log("Starting: cutWood().");
         boolean cutSuccess = false;
-        Entity tree = getObjects().closest("Tree");
+        Entity tree = getObjects().closest(10820);
         log(tree);
 
         if (isReadyToCut() && tree != null && !getInventory().isFull()) {
