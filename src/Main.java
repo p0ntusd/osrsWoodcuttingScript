@@ -24,8 +24,7 @@ import java.util.stream.IntStream;
 @ScriptManifest(info = "Wood and Drop", logo = "", version = 1.0, author = "p0ntus", name = "Woodcutter")
 
 /**
- * TODO:    Fixa så att cutstomDrop() funkar. Just nu startar den och slutar
- *          men går aldrig in i själva loopen.
+ * TODO:    Banking?
  *
  * TODO:    Snyggare logs?
  *
