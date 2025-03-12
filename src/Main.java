@@ -131,9 +131,11 @@ public class Main extends Script {
         log("Starting: dropWood()");
 
         if (rand.randomDropVersion < 3)
-            getInventory().dropAllExcept(INVENTORY_TO_KEEP);
+            customDrop();
+            //getInventory().dropAllExcept(INVENTORY_TO_KEEP);
         else if(rand.randomDropVersion == 4)
-            getInventory().dropAll(WOOD_CUT_IDS);
+            customDrop();
+            //getInventory().dropAll(WOOD_CUT_IDS);
         else
             customDrop();
     }
@@ -144,19 +146,26 @@ public class Main extends Script {
         sleep(rand.dropSleepBeforeShiftPress);
         getKeyboard().pressKey(KeyEvent.VK_SHIFT);
 
-        for (int x = 0; x < 5; x++) {
+        for (int x = 0; x < 28; x++) {
             int xItemID = getInventory().getItemInSlot(x).getId();
+            log(xItemID);
+            log(getInventory().getItemInSlot(x).getName());
             if(IntStream.of(INVENTORY_TO_KEEP).noneMatch(y -> y == xItemID) && getInventory().getItemInSlot(x) != null) {
                 if(getInventory().isItemSelected()) {
                     getInventory().deselectItem();
                     woodDropSpeedSleep();
                 }
                 woodDropSpeedSleep();
+                getMouse().move(getInventory().getMouseDestination(x));
+                woodDropSpeedSleep();
                 getMouse().click(false);
                 sleep(new Random().nextInt(246)+ 230);
             }
         }
-        log("Ending: customDrop().");
+        getKeyboard().releaseKey(KeyEvent.VK_SHIFT);
+        if(getInventory().isItemSelected())
+            getInventory().deselectItem();
+        sleep((long)(rand.dropSleepAfterShiftRelease * WOODCUTTING_SPEED));
     }
 
     private void woodDropSpeedSleep() throws InterruptedException {

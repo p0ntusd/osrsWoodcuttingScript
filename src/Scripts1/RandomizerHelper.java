@@ -23,7 +23,7 @@ public class RandomizerHelper {
     public int AFKTimerFrequency;
     public int randomDropVersion;
     int waifAfterEachDropClick;
-    int dropSleepAfterShiftRelease;
+    public int dropSleepAfterShiftRelease;
     int dropSleepBeforeMouseMovement, dropSleepAfterMouseMovement, dropSleepBeforeClick;
     int dropSleepAfterShiftPress;
     public int dropSleepBeforeShiftPress;
