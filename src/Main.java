@@ -7,11 +7,8 @@
  * @date    05/03 -25 (eu)
  */
 
-import org.osbot.rs07.api.GraphicObjects;
-import org.osbot.rs07.api.Objects;
 import org.osbot.rs07.api.Tabs;
 import org.osbot.rs07.api.model.Entity;
-import org.osbot.rs07.api.model.NPC;
 import org.osbot.rs07.api.ui.Skill;
 import org.osbot.rs07.api.ui.Tab;
 import org.osbot.rs07.script.Script;
