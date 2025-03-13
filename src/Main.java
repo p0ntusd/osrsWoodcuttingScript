@@ -94,13 +94,13 @@ public class Main extends Script {
     public void onPaint(final Graphics2D g) {
         int xpGaind = getExperienceTracker().getGainedXP(Skill.WOODCUTTING);
         int elapsed = (int) getExperienceTracker().getGainedXPPerHour(Skill.WOODCUTTING);
-        int levelsGained = getExperienceTracker().getGainedLevels(Skill.WOODCUTTING);
+        int levelsGained = getSkills().getVirtualLevel(Skill.WOODCUTTING);
 
         g.setColor(Color.white);
         g.drawString("Woodcutter 1.0", 50, 50);
         g.drawString("XP/h: " + String.valueOf(elapsed), 50, 70);
         g.drawString("XP Gained: " + String.valueOf(xpGaind), 50, 90);
-        g.drawString("Levels Gained: " + String.valueOf(levelsGained), 50, 110);
+        g.drawString("Level: " + String.valueOf(levelsGained), 50, 110);
     }
 
     public void stopExcessiveIdling() throws InterruptedException {
