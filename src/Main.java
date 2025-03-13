@@ -30,6 +30,7 @@ import java.util.stream.IntStream;
  *
  * TODO:    Snyggare logs?
  *
+ * TODO:    Fixa GUI.
  *
  */
 
