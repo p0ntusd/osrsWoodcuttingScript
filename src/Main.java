@@ -12,11 +12,13 @@ import org.osbot.rs07.api.Objects;
 import org.osbot.rs07.api.Tabs;
 import org.osbot.rs07.api.model.Entity;
 import org.osbot.rs07.api.model.NPC;
+import org.osbot.rs07.api.ui.Skill;
 import org.osbot.rs07.api.ui.Tab;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.script.ScriptManifest;
 import Scripts1.RandomizerHelper;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -34,7 +36,7 @@ import java.util.stream.IntStream;
 public class Main extends Script {
 
     private static final int MAX_IDLE_TIMER = 200;
-    private static final int AXE_ID = 1361;
+    private static final int AXE_ID = 1357;
     private int idleCounter = 0;
     RandomizerHelper rand;
 
@@ -52,9 +54,9 @@ public class Main extends Script {
         /**
          * ISTÄLLEt FÖR ATT FIXA GUI
          */
-        TREE_IDS[0] = 10820;
-        WOOD_CUT_IDS[0] = 1521;
-        INVENTORY_TO_KEEP[0] = 1361;
+        TREE_IDS[0] = 10831;
+        WOOD_CUT_IDS[0] = 1519;
+        INVENTORY_TO_KEEP[0] = 1357;
 
         while (gui.isActive() || gui.isVisible()) {
             sleep(1427);
@@ -90,6 +92,18 @@ public class Main extends Script {
         return 500;
     }
 
+    @Override
+    public void onPaint(final Graphics2D g) {
+        int xpGaind = getExperienceTracker().getGainedXP(Skill.WOODCUTTING);
+        int elapsed = (int) getExperienceTracker().getElapsed(Skill.WOODCUTTING);
+        int levelsGained = getExperienceTracker().getGainedLevels(Skill.WOODCUTTING);
+
+        g.setColor(Color.white);
+        g.drawString("Levels Gained: " + String.valueOf(levelsGained), 50, 90);
+        g.drawString("XP Gained: " + String.valueOf(xpGaind), 50, 70);
+        g.drawString("XP/h: " + String.valueOf(elapsed), 50, 50);
+    }
+
     public void stopExcessiveIdling() throws InterruptedException {
         if(idleCounter > MAX_IDLE_TIMER) {
             log("idleTimeOutExit()");
@@ -105,7 +119,7 @@ public class Main extends Script {
     public void cutWood() throws InterruptedException {
         log("Starting: cutWood().");
         boolean cutSuccess = false;
-        Entity tree = getObjects().closest(10820);
+        Entity tree = getObjects().closest(TREE_IDS[0]);
         log(tree);
 
         if (isReadyToCut() && tree != null && !getInventory().isFull()) {
@@ -130,11 +144,9 @@ public class Main extends Script {
         log("Starting: dropWood()");
 
         if (rand.randomDropVersion < 3)
-            customDrop();
-            //getInventory().dropAllExcept(INVENTORY_TO_KEEP);
+            getInventory().dropAllExcept(INVENTORY_TO_KEEP);
         else if(rand.randomDropVersion == 4)
-            customDrop();
-            //getInventory().dropAll(WOOD_CUT_IDS);
+            getInventory().dropAll(WOOD_CUT_IDS);
         else
             customDrop();
     }

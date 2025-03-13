@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="Woodcutter 1.0">
-    <output-path>$PROJECT_DIR$/out/artifacts/Woodcutter_1_0</output-path>
+    <output-path>$USER_HOME$/OSBot/Scripts</output-path>
     <root id="archive" name="Woodcutter 1.0.jar">
       <element id="module-output" name="osrsWoodcuttingScript" />
     </root>
