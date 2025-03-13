@@ -95,7 +95,7 @@ public class Main extends Script {
     @Override
     public void onPaint(final Graphics2D g) {
         int xpGaind = getExperienceTracker().getGainedXP(Skill.WOODCUTTING);
-        int elapsed = (int) getExperienceTracker().getElapsed(Skill.WOODCUTTING);
+        int elapsed = (int) getExperienceTracker().getGainedXPPerHour(Skill.WOODCUTTING);
         int levelsGained = getExperienceTracker().getGainedLevels(Skill.WOODCUTTING);
 
         g.setColor(Color.white);
