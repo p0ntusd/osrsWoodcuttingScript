@@ -99,9 +99,10 @@ public class Main extends Script {
         int levelsGained = getExperienceTracker().getGainedLevels(Skill.WOODCUTTING);
 
         g.setColor(Color.white);
-        g.drawString("Levels Gained: " + String.valueOf(levelsGained), 50, 90);
-        g.drawString("XP Gained: " + String.valueOf(xpGaind), 50, 70);
-        g.drawString("XP/h: " + String.valueOf(elapsed), 50, 50);
+        g.drawString("Woodcutter 1.0", 50, 50);
+        g.drawString("XP/h: " + String.valueOf(elapsed), 50, 70);
+        g.drawString("XP Gained: " + String.valueOf(xpGaind), 50, 90);
+        g.drawString("Levels Gained: " + String.valueOf(levelsGained), 50, 110);
     }
 
     public void stopExcessiveIdling() throws InterruptedException {
